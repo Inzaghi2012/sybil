@@ -1,0 +1,399 @@
+@leftPanelWidth:230px;
+@contentColor:rgb(34,34,34);
+._fade(@alphaFrom,@alphaTo){
+    0%  {opacity : @alphaFrom;}
+    100%{opacity : @alphaTo;}
+}
+._bgColorChange(@colorFrom,@colorTo){
+    0%  {background-color : @colorFrom;}
+    100%{background-color : @colorTo;}
+}
+@-webkit-keyframes fadeIn{
+    ._fade(0,1);
+}
+@-webkit-keyframes fadeOut{
+    ._fade(1,0);
+}
+@-webkit-keyframes bgHighlight_gray{
+    ._bgColorChange(rgba(20,20,20,0),rgba(20,20,20,0.3));
+}
+.animation(@name,@duration:0.2s,@timingFunc:ease){
+    -webkit-animation-name:@name;
+    -webkit-animation-duration: @duration;
+    -webkit-animation-timing-function: @timingFunc;
+    -webkit-backface-visibility: hidden;
+    -webkit-animation-fill-mode: both;
+}
+
+body{
+    margin:0;
+    width:100%;
+    height:100%;
+    font-family:arial,sans-serif;
+}
+div,header,section{
+    overflow:hidden;
+}
+button{
+    cursor:pointer;
+    text-align:center;
+}
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+#homeHeader{
+    border-bottom:1px solid lightgray;
+}
+#homeWrapper{
+    z-index:-3;
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    padding-left:@leftPanelWidth;
+    box-sizing:border-box;
+    border:1px solid black;
+    #home{
+				header{
+						button{
+								background-color:transparent;
+								border:none;
+								height:50px;
+								&:hover{
+										color:darkred;
+								}
+						}
+				}
+				width:100%;
+				height:100%;
+    }
+}
+#feedsListBox{
+    overflow-y:scroll;
+    height:96%;
+    #feedsListBoxTitle{
+				a{text-decoration:none;}
+				i{display:none;}
+				font-size:16px;
+				margin:8px;
+				margin-top:20px;
+				margin-left:10px;
+				font-weight:bold;
+				a{
+						color:darkred;
+				}
+    }
+    #feedsList{
+    }
+    .timeBox{
+				color:gray;
+				font-size:15px;
+				float:right;
+				margin-right:10px;
+				position:relative;
+				top:-38px;
+    }
+    .feedItem,.rssUpdateItem{
+				overflow:hidden;
+				padding-left:20px;
+				border-top:1px solid lightgrey;
+				border-bottom:1px solid transparent;
+				.content{
+						color:@contentColor;
+						margin-left:10px;
+						width:800px;
+						font-size:14px;
+						line-height:24px;
+				}
+    }
+    .feedItem{
+				border:1px solid lightgrey;
+				width:95%;
+				margin-bottom:15px;
+				padding-top:15px;
+				padding-bottom:10px;
+				position:relative;
+				.author{
+						font-size:14px;
+				}
+				.titleBox{
+						width:90%;
+				}
+				button{
+						background-color:transparent;
+						border:none;
+						margin:3px;
+						padding:0;
+						font-size:16px;
+				}
+				.likeBtn{
+						&:hover{color:orange;}
+						&.active{color:orange;}
+				}
+				.shareBtn{
+						margin-left:20px;
+						&:hover{color:darkgreen;}
+						&.active{color:darkgreen;cursor:auto;}
+				}
+				.feedTitle{
+						font-size:18px;
+						text-decoration:none;
+						font-weight:bold;
+						color:darkblue;
+				}
+				&.focus{
+						border-left:3px solid darkred;
+						padding-left:18px;
+				}
+				&.readed .feedTitle{
+						color:rgba(20,20,20,0.8);
+				}
+    }
+    .rssUpdateItem{
+				width:850px;
+				padding-bottom:10px;
+				cursor:pointer;
+				.content{
+						max-height:400px;
+						overflow:hidden;
+						text-overflow:ellipsis;
+						white-space:nowrap;
+						img{
+								max-width:350px;
+								height:auto;
+								border:10px solid white;
+								border-radius:6px;
+								box-shadow:0 0 10px 0 grey;
+						}
+				}
+				img{
+						max-width:350px;
+						border:10px solid white;
+						border-radius:6px;
+						box-shadow:0 0 10px 0 grey;
+				}
+				.rssTitle{
+						color:darkblue;
+				}
+				&:hover{
+						background-color:rgba(100,100,100,0.1);
+				}
+    }
+    footer{
+				width:97%;
+    }
+    .feedsListFooter{
+				p{
+						margin: 0;
+						border-top: 1px solid lightgray;
+						text-align: center;
+						font-size: 40px;
+						font-weight: bolder;
+						color: lightgray;
+				}
+    }
+    .feedsListOnloadFooter{
+				font-size:30px;
+				text-align:center;
+				margin:15px;
+    }
+}
+#rssItemMenu{
+    display:none;
+    border: 1px solid gray;
+    background-color: white;
+    width: 110px;
+    padding-top:10px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 0 0 6px rgb(153, 151, 151);
+    header{
+				p{
+						margin:5px;
+						font-size:12px;
+						font-weight:bold;
+						width:105px;
+						overflow:hidden;
+						text-overflow:ellipsis;
+						white-space:nowrap;
+				}
+    }
+    button{
+				width:96%;
+				margin-left:2%;
+				margin-bottom:5px;
+				border:none;
+				text-align:left;
+				padding-left:10px;
+				background-color:transparent;
+				&:hover{
+						color:darkred;
+						font-weight:bold;
+				}
+    }
+}
+
+#leftPanelWrapper{
+    z-index:-1;
+    position:absolute;
+    top:0;
+    left:0;
+    width:@leftPanelWidth;
+    height:100%;
+    box-sizing:border-box;
+    margin:0;
+}
+#leftPanel{
+		width:100%;
+		height:100%;
+		border:1px solid black;
+		text-align:center;
+		button{
+				display:block;
+		}
+		h1{
+				color:55,55,55;
+		}
+		#subscribeBtn{
+				margin:15px auto;
+				width:100px;
+				height:30px;
+				background-color:lightyellow;
+				border:1px solid orange;
+		}
+		#homepageBtn , #recommandPageBtn{
+				width:80%;
+				margin:auto;
+				background-color:transparent;
+				border:none;
+				height:25px;
+				margin-bottom:5px
+		}
+		#homepageBtn.active{color:darkred;font-weight:bold;}
+		#recommandPageBtn.active{color:darkred;font-weight:bold;}
+		#recommandPageBtn.unread{color:orange;font-weight:bold;}
+		#homepageBtn:hover{background-color:lightgrey;}
+		#recommandPageBtn:hover{background-color:lightgrey;}
+		#rssList{
+				width:90%;
+				margin:auto;
+				border-top:1px solid rgba(0,0,0,0.2);
+				margin-top:20px;
+				padding-top:10px;
+		}
+		.rssListItem{
+				margin:0;
+				cursor:pointer;
+				.iconWrapper{
+						margin:0;
+						padding:0;
+						display:inline;
+						img{
+								margin-top:4px;
+								margin-left:15px;
+								float:left;
+								width:18px;
+								height:auto;
+						}
+						i{
+								font-size:18px;
+								margin-top:4px;
+								margin-left:15px;
+								float:left;
+								width:18px;
+								height:auto;
+						}
+				}
+				p{
+						margin:5px auto;
+						display:inline-block;
+						font-size:13px;
+				}
+				.source{
+						text-align:left;
+						float:left;
+						margin-left:13px;
+						width:120px;
+						overflow:hidden;
+						text-overflow:ellipsis;
+						white-space:nowrap;
+				}
+				&.active{
+						font-weight:bold;
+						color:darkred;
+				}
+				&:hover{
+						color:darkred;
+				}
+				&.unread{
+						//font-weight:bold;
+				}
+		}
+
+}
+#subscribePopup{
+    text-align:center;
+    z-index:1000;
+    margin:auto;
+    margin-top:15%;
+    width:250px;
+		height:180px;
+    background-color:white;
+    border:1px solid gray;
+    border-radius:2px;
+    box-shadow:0 0 10px lightgray;
+		h3{
+				color:darkred;
+		}
+    p{
+				font-size:13px;
+				color:gray;
+    }
+    input{
+				height:20px;
+				border:2px solid gray;
+				margin-bottom:20px;
+    }
+    button{
+				cursor:pointer;
+				background-color:transparent;
+				border:none;
+				margin:10px;
+				&:hover{
+						color:darkred;
+				}
+    }
+}
+#messageBoxWrapper{
+    position:fixed;
+    top:5px;
+    left:0;
+    width:100%;
+    text-align:center;
+
+}
+#messageBox{
+		font-size:13px;
+		display:none;
+		width:150px;
+		margin:auto;
+		padding:20px auto;
+    border:1px solid lightgray;
+    border-radius:3px;
+    background-color:rgba(20,20,20,0.6);
+		background-color:white;
+    color:white;
+		color:darkred;
+    #spinner{display:inline-block;}
+		p{
+				display: inline-block;
+				margin: 7px auto;
+		}
+    .error{
+				color:red;
+    }
+}

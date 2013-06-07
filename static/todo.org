@@ -1,0 +1,8 @@
+
+* 好看的提示框
+* DONE 取消订阅(右键菜单)
+* DONE header的按钮做好看一些
+* DONE 给rss加上icon
+* DONE feed update Time
+* DONE 进入rss后滚动到最后已读（或者不显示已读信息）
+* DONE 给item添加完整边框并且加上margin

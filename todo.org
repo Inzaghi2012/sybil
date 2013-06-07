@@ -1,0 +1,58 @@
+* API applimented
+** APIs
+   localhost:3001/api/apiname
+   OverAll:Rss use it's URI as it's id/guid
+*** rss
+*** subscribe
+		rss=rssurl
+*** unsubscribe
+    rss=rssurl
+*** feed
+    rss=rssurl,(optionals)start=int,count=int
+    return: feeds:[],drain:true or false(drain no more feeds)
+*** read
+    id=feed-guid
+*** unread
+    id=feed-guid
+*** like
+*** unlike
+*** share
+*** recommandedFees
+** dbs
+   rsses = {
+   _id:rss_url
+   ,info: rssinfo
+   ,addDate:
+   ,lastUpdate:
+   ,updateFrequency
+   }
+   feeds = {
+   _id:mongo-guid
+   rss:rss_url
+   ,feedInfo
+   }
+* web crawler implemented
+  fetch(rssurl,callback)->
+  return rssInfo
+
+  update(rssurl,callback)->
+  do the same as getRss but update rssinfo to the dbs
+  
+* Formats
+** Feed
+   source:rss-url
+   link:link
+   title:title
+   author:author
+   date:date
+   guid:guid
+   like:undefined or true
+   read:undefined or true
+** Rss
+   title:title
+   description:description
+   id:id
+   date:date
+   link:link
+   
+

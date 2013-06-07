@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Sybil - A new Reader</title>
+	</head>
+	<body>
+		<header id="mainHeader" >
+			<h2>Sybil</h2>
+		</header>
+		<section id="leftPanel" >
+			<button id="" class="">订阅</button>
+		</section>
+		<section id="mainWindow" >
+			
+		</section>
+	</body>
+</html>

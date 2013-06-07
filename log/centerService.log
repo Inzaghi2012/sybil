@@ -1,0 +1,1002 @@
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+
+/home/wuminghan/workspace/sybil/centerServer/main.coffee:110
+      this.nodeIp = tunnel._socket.remoteAddress;
+                                  ^
+TypeError: Cannot read property 'remoteAddress' of undefined
+    at new NodeSession (/home/wuminghan/workspace/sybil/centerServer/main.coffee:110:35)
+    at WebSocketServer.<anonymous> (/home/wuminghan/workspace/sybil/centerServer/main.coffee:49:19)
+    at WebSocketServer.EventEmitter.emit (events.js:95:17)
+    at /home/wuminghan/node_modules/ws/lib/WebSocketServer.js:69:14
+    at completeHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:230:5)
+    at WebSocketServer.handleHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:253:3)
+    at WebSocketServer.handleUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:142:26)
+    at Server.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:67:12)
+    at Server.EventEmitter.emit (events.js:106:17)
+    at Socket.socket.ondata (http.js:1937:14)
+    at TCP.onread (net.js:510:27)
+{ domain: null,
+  _events: { data: [Function], close: [Function] },
+  _maxListeners: 10,
+  ws: 
+   { _socket: 
+      { _connecting: false,
+        _handle: [Object],
+        _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: [Object],
+        _maxListeners: 10,
+        _writableState: [Object],
+        writable: true,
+        allowHalfOpen: true,
+        onend: null,
+        destroyed: false,
+        errorEmitted: false,
+        bytesRead: 154,
+        _bytesDispatched: 129,
+        _pendingData: null,
+        _pendingEncoding: '',
+        server: [Object],
+        _idleTimeout: -1,
+        _idleNext: null,
+        _idlePrev: null,
+        _idleStart: 1370099248604,
+        parser: null,
+        ondata: null,
+        pipe: [Function],
+        addListener: [Function],
+        on: [Function],
+        pause: [Function],
+        resume: [Function],
+        read: [Function],
+        _consuming: true },
+     bytesReceived: 0,
+     readyState: 1,
+     supports: { binary: true },
+     protocol: undefined,
+     protocolVersion: 13,
+     upgradeReq: 
+      { _readableState: [Object],
+        readable: true,
+        domain: null,
+        _events: {},
+        _maxListeners: 10,
+        socket: [Object],
+        connection: [Object],
+        httpVersion: '1.1',
+        complete: true,
+        headers: [Object],
+        trailers: {},
+        _pendings: [],
+        _pendingIndex: 0,
+        url: '/',
+        method: 'GET',
+        statusCode: null,
+        client: [Object],
+        _consuming: false,
+        _dumped: false,
+        httpVersionMajor: 1,
+        httpVersionMinor: 1,
+        upgrade: true,
+        parser: null },
+     _isServer: true,
+     _receiver: 
+      { fragmentedBufferPool: [Object],
+        unfragmentedBufferPool: [Object],
+        state: [Object],
+        overflow: [],
+        headerBuffer: <Buffer c8 23 6b 02 00 00 00 00 00 00>,
+        expectOffset: 0,
+        expectBuffer: <Buffer c8 23>,
+        expectHandler: [Function],
+        currentMessage: [],
+        dead: false,
+        onerror: [Function],
+        ontext: [Function],
+        onbinary: [Function],
+        onclose: [Function],
+        onping: [Function],
+        onpong: [Function] },
+     _sender: { _socket: [Object], firstFragment: true, _events: [Object] },
+     _events: { close: [Object], message: [Function] } },
+  isReady: true }
+
+/home/wuminghan/workspace/sybil/centerServer/main.coffee:111
+      this.nodeIp = tunnel._socket.remoteAddress;
+                                  ^
+TypeError: Cannot read property 'remoteAddress' of undefined
+    at new NodeSession (/home/wuminghan/workspace/sybil/centerServer/main.coffee:111:35)
+    at WebSocketServer.<anonymous> (/home/wuminghan/workspace/sybil/centerServer/main.coffee:49:19)
+    at WebSocketServer.EventEmitter.emit (events.js:95:17)
+    at /home/wuminghan/node_modules/ws/lib/WebSocketServer.js:69:14
+    at completeHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:230:5)
+    at WebSocketServer.handleHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:253:3)
+    at WebSocketServer.handleUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:142:26)
+    at Server.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:67:12)
+    at Server.EventEmitter.emit (events.js:106:17)
+    at Socket.socket.ondata (http.js:1937:14)
+    at TCP.onread (net.js:510:27)
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 53605,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:08:05 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 53605,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:08:05 GMT+0800 (CST) } ]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+[]
+try add to sessions
+useIt false
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 26906,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:11:26 GMT+0800 (CST) } ]
+try add to sessions
+useIt true
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]
+[ { domain: null,
+    _events: { getNodes: [Function] },
+    _maxListeners: 10,
+    publicCalls: [ 'getNodes' ],
+    tunnelId: 32434,
+    tunnel: 
+     { domain: null,
+       _events: [Object],
+       _maxListeners: 10,
+       ws: [Object],
+       isReady: true },
+    nodeIp: '127.0.0.1',
+    date: Sat Jun 01 2013 23:12:42 GMT+0800 (CST) } ]

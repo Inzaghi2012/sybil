@@ -1,0 +1,615 @@
+require "coffee-script"
+express = require "express"
+async = require "async"
+mongodb = require "mongodb"
+crypto = require "crypto"
+path = require "path"
+db = require "./db.coffee"
+util = require "./util.coffee"
+Collections = db.Collections
+MongoStore = require("connect-mongo")(express)
+Error  = (require "./error").Error
+settings = (require "./settings").settings
+ObjectID = (require "mongodb").ObjectID
+childProcess = require "child_process"
+simulateDelay = process.argv[2] is "delay"
+webcacheManager = require "./webcacheManager.coffee"
+service = require "./service/service.coffee"
+common = require "./common"
+delayTime = 500
+if simulateDelay
+    console.log "use delay mode of %d ms",delayTime
+#init database
+app = express()
+app.enable "trust proxy"
+app.use express.bodyParser()
+app.use express.cookieParser()
+app.use express.session({
+    secret:settings.sessionSecret
+    key:"mikupantsu"
+    store:new MongoStore({db:settings.database.name})
+    })
+# db check ready
+app.use (req,res,next)->
+    if not db.DatabaseReady
+        res.status 503
+        res.json {"error":"Server Not Ready"}
+        return
+    next()
+# descriptor for json response
+app.use (req,res,next)->
+    res.json = (obj)->
+        if not res.responseContentType
+            res.setHeader("Content-Type","text/json")
+        else
+            res.setHeader("Content-Type",res.responseContentType)
+        if simulateDelay
+            setTimeout (()-> 
+                res.end(JSON.stringify(obj))
+            ),delayTime
+            return
+        res.end(JSON.stringify(obj))
+    res.success = (obj)->
+        res.json {state:true,data:obj}
+    res.jsonError = (description,errorCode,subCode)->
+        @json({
+            state:false
+            error:description
+            errorCode:errorCode #Abstract general error code
+            subCode:subCode #detail error code used for custom Error
+            })
+    res.serverError = ()->
+        res.jsonError "Server Error",Error.ServerError 
+    next()
+
+app.post "/api/signup",(req,res)->
+    username = req.param("username",null) 
+    password = req.param("password","")
+    email = req.param("email",undefined)
+    date = new Date()
+    # username at least 3 regular charactor
+    if not username
+        res.jsonError "Invalid Username",Error.InvalidParameter
+        return
+    if not /^[a-z0-9_]{3,64}$/i.test username
+        res.jsonError "Invalid Username",Error.InvalidParameter
+        return
+    # hash with salt
+    hash = crypto.createHash("sha1").update(password+date.getTime()).digest("hex");
+    Collections.user.find {username:username},(err,cursor)->
+        if err or !cursor
+            res.jsonError("Server Error")
+            return
+        cursor.toArray (err,results)->
+            if err
+                res.jsonError("Server Error")
+                return
+            if results.length>0
+                res.jsonError("Username Exists",Error.AlreadyExists)
+                return 
+            Collections.user.insert {username:username,password:hash,date:date,archiveCount:0} 
+            
+            req.session.username = username
+            req.session.trust = true
+            req.session.maxAge = settings.defaultExpire
+            res.success()
+            return
+
+app.post "/api/signin",(req,res)->
+    username = req.param("username",null)
+    password = req.param("password","")
+    if not username
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.user.findOne {username:username},(err,doc)->
+        if err
+            res.serverError()
+            return
+        if not doc 
+            res.jsonError "Authorization Failed",Error.AuthorizationFailed
+            return
+        #dateString is memomeme old version support
+        salt = doc.dateString or doc.date.getTime()
+        if (crypto.createHash("sha1").update(password+salt).digest("hex").toString() isnt doc.password)
+            res.jsonError "Authorization Failed",Error.AuthorizationFailed
+            return
+        req.session.username = username
+        req.session.trust = true
+        req.session.maxAge = settings.defaultExpire
+        res.success()
+        return 
+        
+
+
+app.post "/api/signout",(req,res)->
+    if req.session.username and req.session.trust
+        req.session.destroy()
+        res.json({state:true})
+    else
+        res.json({state:false})
+# auth for all the API below
+app.post "/api/:apiname",(req,res,next)->
+    if req.session.trust and req.session.username
+        next()
+        return
+    res.jsonError("Authorization Failed",Error.AuthorizationFailed)
+    return
+app.post "/api/getProfile",(req,res,next)->
+    if not req.session.username
+        console.error "Should'nt reach here"
+        console.error "Request Information",req
+        console.trace()
+        return 
+    Collections.user.findOne {username:req.session.username},(err,user)->
+        if err
+            console.error "Server Error",err
+            res.serverError()
+            return
+        if not user 
+            console.error "Should'nt reach here"
+            console.error "Request Information"
+            console.trace()
+            return
+        profile = {
+            username:user.username
+            email:user.email
+            archiveCount:user.archiveCount
+            }
+        res.success profile
+app.post "/api/updateEmail",(req,res,next)->
+    username = req.session.username
+    email = req.param("email","")
+    # empty email is OK
+    if not /[a-z0-9.]+@[a-z0-9.]+/.test(email) and email.length > 0
+        res.jsonError("Invalid Parameter",Error.InvalidParameter)
+        return
+    Collections.user.findOne {username:username},(err,user)->
+        if err
+            console.error("Server Error",err)
+            res.jsonError("Server Error")
+            return
+        if not user
+            console.error("User Not Found","username%s",username)
+            console.error("Should'nt reach here")
+            return
+        user.email = email
+        Collections.user.update {username:username},{$set:{
+            email:email
+            }}
+        res.success()
+
+
+app.post "/api/updatePassword",(req,res,next)->
+    username = req.session.username
+    password = req.param("password","")
+    newPassword = req.param("newPassword",null)
+    if not newPassword
+        res.jsonError("Invalid Parameter",Error.InvalidParameter)
+        return
+    if not username
+        console.error "Should'nt reach here"
+        res.jsonError("Server Error",Error.ServerError)
+        return
+    Collections.user.findOne {username:username},(err,user)->
+        if err
+            console.error "Server Error",err
+            res.serverError()
+            return
+        if not user
+            console.error "User Not Found",username
+            res.serverError()
+            return
+            
+        #old version of memomeme use date.toString() as salt,But unforseen problems occured for VPS that has different Timezone with test machine will not work correctly
+        # newer version use date.getTime but with oldversion backup as dateString
+        salt = user.dateString or user.date.getTime()
+        hash = crypto.createHash("sha1").update(password+salt).digest("hex");
+        if hash isnt user.password
+            res.jsonError "Authorization Failed",Error.AuthorizationFailed
+            return
+        user.password = crypto.createHash("sha1").update(newPassword+user.date.getTime()).digest("hex");
+        delete user.dateString
+        Collections.user.update {username:username},user
+        req.session.destroy()
+        res.success()
+        
+
+app.post "/api/createArchive",(req,res)->
+    content = req.param("content","")
+    date = null
+    tags = req.param("tags","")
+    images = req.param("images","").toString().split(",").filter (item)->item
+    audios = req.param("audios","").toString().split(",").filter (item)->item
+    tags = tags.split(/\s/g).filter (item)->item
+    if not date
+        date = new Date()
+    username = req.session.username
+    validImages = []
+    validAudios = []
+    if not username
+        console.error "Should'nt reach here"
+        console.error "session no username"
+        res.serverError()
+        return
+    tryFetchWebcache = (err,archive)->
+        if err
+            return
+        console.log("load WAM")
+        webAssetManager = service.load "webAssetManager"
+        webAssetManager.extractAssetFromContent archive.content,(err,assets)->
+            console.log("WAM return",assets[0].assets)
+            Collections.archive.update {_id:archive._id},{$set:{webAssets:assets}}
+        # currently also doing webcache for compatible reason
+        urls = webcacheManager.parseIntoUrls content
+        if not urls or urls.length <= 0
+            return
+        webcacheManager.addUrlsToArchive archive._id,urls
+    addArchive = (callback)->
+        Collections.user.findAndModify {username:username},{},{$inc:{archiveCount:1}},(err,user)->
+            if err or not user
+                callback err
+                res.serverError()
+                return
+            Collections.archive.insert {index:user.archiveCount,username:username,date:date,content:content,tags:tags,images:validImages,audios:validAudios},{safe:true},(err,docs)->
+                if not docs or err
+                    console.error "Server Error",err
+                    res.jsonError("Server Error",Error.ServerError)
+                    callback err
+                    return
+                    
+                res.success({content:content,tags:tags,date:date,id:docs[0].index,images:docs[0].images or [],audios:docs[0].audios or []})
+                if callback
+                    callback(null,docs[0])
+                    return
+    if images.length > 0  or audios.length > 0
+        try
+            imageIds = (ObjectID.createFromHexString(id) for id in images)
+            audioIds = (ObjectID.createFromHexString(id) for id in audios)
+            
+        catch e
+            console.error "invalid ids",e
+            res.jsonError "Invalid Parameter",Error.InvalidParameter
+            return
+        Collections.image.find {_id:{$in:imageIds},username:username},(err,docs)->
+            if err
+                res.jsonError "Server Error",Error.Server
+                return
+            docs.toArray (err,docs)->
+                if err
+                    res.serverError()
+                    return
+                for item in docs
+                    validImages.push {hash:item.hash,id:item._id}
+                Collections.audio.find {_id:{$in:audioIds},username:username},(err,docs)->
+                    if err
+                        res.jsonError "Server Error",Error.Server
+                        return 
+                    docs.toArray (err,docs)->
+                        if err
+                            res.serverError()
+                            return
+                        for item in docs
+                            validAudios.push {hash:item.hash,id:item._id} 
+                        addArchive(tryFetchWebcache)
+    else
+        addArchive(tryFetchWebcache)
+        
+app.post "/api/updateArchive",(req,res)->
+    id = req.param("id",-1)
+    username = req.session.username
+    content = req.param("content","")
+    tags = req.param("tags","")
+    tags = tags.split(/\s/g).filter (item)->item
+    index = parseInt(id)
+    if isNaN(index) or index  < 0
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.archive.findAndModify {index:index,username:username},{},{$set:{content:content,tags:tags},},(err,doc)->
+        if err
+            res.jsonError "ServerError",Error.ServerError
+            return 
+        if not doc
+            res.jsonError "Not Found",Error.NotFound
+            return
+        if doc.username isnt username
+            res.jsonError "Authorization Failed",Error.AuthorizationFailed
+            return
+        res.success({content:content,id:doc.index,tags:doc.tags,date:doc.date,images:doc.images})
+
+app.post "/api/deleteArchive",(req,res)->
+    id = req.param("id",-1)
+    username = req.session.username
+    
+    index = parseInt(id)
+    if isNaN(index) or index  < 0
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.archive.findAndModify {index:index,username:username},{},{$set:{remove:true}},{},(err,doc)->
+        if err
+            res.jsonError "Not Found",Error.NotFound
+            return
+        if not doc
+            res.jsonError "Not Found",Error.NotFound
+            return 
+        if doc.username isnt username
+            res.jsonError "Authorization Failed",Error.AuthorizationFailed
+            return
+        res.success {_id:doc._id}
+app.post "/api/getArchive",(req,res)->
+    id = req.param("id",-1)
+    username = req.session.username
+    
+    index = parseInt(id)
+    if isNaN(index) or index  < 0
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.archive.findOne {index:index,username:username},(err,doc)->
+        if err
+            res.serverError()
+            return
+        if not doc or doc.remove
+            res.jsonError "Not Found",Error.NotFound
+            return
+        delete doc._id
+        doc.id = doc.index
+        res.success doc
+
+app.post "/api/getArchives",(req,res)->
+    username = req.session.username 
+    year = 1000*60*60*24*365
+    keyword = req.param("keyword","")
+    tags = req.param("tags","")
+    keyword = keyword.split(/\s/g).filter (item)->item
+    count = parseInt(req.param("count",15))
+    if not count
+        count = 15
+    tags = tags.split(/\s/g).filter (item)->item
+    keyword = keyword.map (item)->
+        if item
+            return new RegExp(item,"g")
+        else
+            return /.*/ 
+    tags = tags.map (item)->
+        if item
+            return item
+    from = parseInt(req.param("from",0))
+    to = parseInt(req.param("to",year*10000))
+    
+    if not (from>=0) or not (to>0) or from - to > 0
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    from = new Date(from)
+    to = new Date(to)
+    query = {$and:[{username:username},{date:{$lt:to,$gt:from}}]}
+    if tags.length > 0
+        query.$and.push({tags:{$all:tags}})
+    if keyword.length > 0
+        query.$and.push({content:{$all:keyword}})
+    Collections.archive.find query,(err,docs)->
+        if err or not docs
+            res.serverError()
+            return
+        docs.toArray (err,docs)->
+            # performance issue here
+            # latter use mongodb option:sort to optimize
+            docs = docs.sort (x,y)->
+                return y.index - x.index
+            
+            docs = docs.filter (item)->not item.remove
+            if err
+                res.serverError()
+                return
+            results = ({id:doc.index,content:doc.content,tags:doc.tags or [],date:doc.date,images:doc.images or [],webcaches:doc.webcaches or [],audios:doc.audios or [],webAssets:doc.webAssets} for doc in docs).slice(0,count)
+            res.success results
+
+app.post "/api/createNote",(req,res)->
+    username = req.session.username
+    name = req.param("name",null)
+    content = req.param("content","")
+    if not name
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.user.findOne {username:username},(err,user)->
+        if err or not user
+            res.serverError()
+            return
+        user.notes = user.notes or {}
+        if user.notes[name]
+            res.jsonError "Already Exist",Error.AlreadyExist
+            return
+        user.notes[name] = content
+        Collections.user.update {_id:user._id},user,{safe:true},(err,doc)->
+            if err or not doc
+                res.serverError()
+                return 
+            res.success({name:name,content:content})
+            
+app.post "/api/getNote",(req,res)->
+    username = req.session.username
+    name = req.param("name",null)
+    if not name
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.user.findOne {username:username},(err,user)->
+        if err or not user
+            res.serverError()
+            return
+        user.notes = user.notes or {}
+        if not user.notes[name]
+            res.jsonError "Not Found",Error.NotFound
+            return
+        res.success({name:name,content:user.notes[name]})
+
+app.post "/api/updateNote",(req,res)->
+    username = req.session.username
+    name = req.param("name",null)
+    content =req.param("content","")
+    if not name
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.user.findOne {username:username},(err,user)-> 
+        if err or not user
+            res.serverError()
+            return
+        user.notes = user.notes or {}
+        if not user.notes[name] 
+            res.jsonError "Not Found",Error.NotFound
+            return
+        user.notes[name] = content
+        Collections.user.update {_id:user._id},user,{safe:true},(err,count)-> 
+            if err
+                res.serverError()
+                return
+            res.success {name:name,content:user.notes[name]}
+app.post "/api/deleteNote",(req,res)->
+    username = req.session.username
+    name = req.param("name",null) 
+    if not name
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    Collections.user.findOne {username:username},(err,user)-> 
+        if err or not user
+            res.serverError()
+            return
+        user.notes = user.notes or {}
+        if not user.notes[name] 
+            res.jsonError "Not Found",Error.NotFound
+            return
+        delete user.notes[name]
+        Collections.user.update {_id:user._id},user,{safe:true},(err,count)-> 
+            if err
+                res.serverError()
+                return
+            res.success()
+
+app.post "/api/getNotes",(req,res)->
+    username = req.session.username
+    Collections.user.findOne {username:username},(err,user)-> 
+        if err or not user
+            res.serverError()
+            return
+        res.success {notes:user.notes or {}}
+_addAudio = (tempPath,filename,username,req,res)->
+    common.importAudioToUserSpace tempPath,settings,userAudioDirectory,null,(err,md5)->
+        if err
+            res.serverError()
+            return
+        date = new Date()
+        Collections.audio.insert {username:username,hash:md5,filename:filename or "anonymous",date:date},{safe:true},(err,doc)->
+            if err or doc.length isnt 1
+                res.serverError()
+                return
+            id = doc[0]._id
+            if code isnt 0
+                res.serverError()
+                console.error "Fail to move audio,return code",code
+                return
+            res.success {id:id,hash:md5,filename:filename or "anonymous",date:date}
+    
+_addImage = (tempPath,filename,username,req,res)->
+    common.importImageToUserSpace tempPath,(err,md5)->
+        date = new Date()
+        if err
+            res.serverError()
+        Collections.image.insert {username:username,hash:md5,filename:filename or "anonymous",date:date},{safe:true},(err,doc)->
+            if err or doc.length isnt 1
+                res.serverError()
+                return
+            id = doc[0]._id
+            res.success {id:id,hash:md5,filename:filename or "anonymous",date:date}
+app.post "/api/fetchImage",(req,res)->
+    username = req.session.username
+    url = req.param("url","")
+    if not url or (url.indexOf("http://") isnt 0 and url.indexOf("https://") isnt 0 )
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    tempName = parseInt(Math.random()*100000000).toString()
+    tempPath = path.join(settings.tempPath,tempName)
+    filename = url
+    curl = childProcess.spawn("curl",[url,"-o",tempPath])
+    
+    curl.on "exit",(code)->
+        if code isnt 0
+            res.jsonError "Fail",Error.Fail
+            return
+            
+        _addImage tempPath,filename,username,req,res 
+app.post "/api/uploadAudio",(req,res)->
+    
+    # returned to an iframe
+    # to prevent iframe download it
+    # set content type as "text/html"
+    res.responseContentType = "text/html"
+    username = req.session.username
+    if not req.files
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    if not req.files.audio
+        res.jsonError "Unknown Format",Error.UnknownFormat
+        return
+    tempPath = req.files.audio.path
+    filename = req.files.audio.name
+    _addAudio(tempPath,filename,username,req,res)
+app.post "/api/deleteAudio",(req,res)->
+    username = req.session.username
+    id = req.param("id","")
+    if not /[0-9a-z]{24}/i.test(id)
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    try
+        _id = ObjectID.createFromHexString(id)
+    catch e
+        _id = null
+    if not _id
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    # not implemented
+    res.success()
+
+app.post "/api/uploadImage",(req,res)->
+    username = req.session.username
+    # returned to an iframe
+    # to prevent iframe make it downloadable
+    res.responseContentType = "text/html"
+    if not req.files
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    if not req.files.image
+        res.jsonError "Unknown Format",Error.UnknownFormat
+        return
+    tempPath = req.files.image.path
+    filename = req.files.image.name
+    _addImage tempPath,filename,username,req,res
+
+app.post "/api/deleteImage",(req,res)->
+    username = req.session.username
+    id = req.param("id","")
+    if not /[0-9a-z]{24}/i.test(id)
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+    try
+        _id = ObjectID.createFromHexString(id)
+    catch e
+        _id = null
+    if not _id
+        res.jsonError "Invalid Parameter",Error.InvalidParameter
+        return
+         
+    Collections.image.findOne {_id:_id},(err,doc)-> 
+        if err
+            res.serverError()
+            return
+        if not doc
+            res.jsonError "Not Found",Error.NotFound
+            return
+        if doc.username isnt username
+            res.jsonError "Authorization Failed",Error.AuthorizationFailed
+            return
+        Collections.image.findAndModify {_id:_id},{},{},{remove:true},(err,doc)->null 
+        res.success()
+        
+#handle finy result
+app.all "/api/:apiname",(req,res,next)->
+    res.status 404
+    res.jsonError("Api Not Found",Error.NotFound)
+app.listen 3001

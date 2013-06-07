@@ -1,0 +1,686 @@
+TypeError: undefined is not a function
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:26:23)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:332:4)
+    at Module._compile (module.js:456:26)
+    at Object.exports.run (/usr/lib/node_modules/coffee-script/lib/coffee-script/coffee-script.js:124:25)
+    at compileScript (/usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:166:29)
+    at /usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:141:18
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+TypeError: undefined is not a function
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:26:23)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:332:4)
+    at Module._compile (module.js:456:26)
+    at Object.exports.run (/usr/lib/node_modules/coffee-script/lib/coffee-script/coffee-script.js:124:25)
+    at compileScript (/usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:166:29)
+    at /usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:141:18
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+ReferenceError: declare is not defined
+    at new LocalP2pInterface (/home/wuminghan/workspace/sybil/server/utils.coffee:85:7)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:26:23)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:332:4)
+    at Module._compile (module.js:456:26)
+    at Object.exports.run (/usr/lib/node_modules/coffee-script/lib/coffee-script/coffee-script.js:124:25)
+    at compileScript (/usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:166:29)
+    at /usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:141:18
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
+ip null
+p2pLocalPort 45116
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+recieve invalid response of invalid ticket { err: null,
+  data: 
+   [ { pubkey: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOoIRt2vP9nGyHQMnWgQHrskjj9qM0UV\nGbrCDC5t2zrUqdeuOZCjy7ttnyA5Vk9BgzcRJAsYdaaOLum2sy0M6XcCAwEAAQ==\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 1 },
+     { pubkey: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD0oSbx1XRgwvUGOD/jIJzUBbuZ\nhvmpYN3fP0UmwuU5bt+5T/v8FgX86YabhrnFc6rdsXPc7VepPA8UqmQoE7sPeHQO\nUzisQb42QOT4xHa0xNihmNjOFx+A5KLzBc4YN7DJZQJn/0EUIo4FAwmgXa7jwpWW\nQURl88+7Qu7RgW4XXwIDAQAB\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 2 } ],
+  ticket: 340639 }
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+recieve invalid response of invalid ticket { err: null,
+  data: 
+   [ { pubkey: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOoIRt2vP9nGyHQMnWgQHrskjj9qM0UV\nGbrCDC5t2zrUqdeuOZCjy7ttnyA5Vk9BgzcRJAsYdaaOLum2sy0M6XcCAwEAAQ==\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 1 },
+     { pubkey: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD0oSbx1XRgwvUGOD/jIJzUBbuZ\nhvmpYN3fP0UmwuU5bt+5T/v8FgX86YabhrnFc6rdsXPc7VepPA8UqmQoE7sPeHQO\nUzisQb42QOT4xHa0xNihmNjOFx+A5KLzBc4YN7DJZQJn/0EUIo4FAwmgXa7jwpWW\nQURl88+7Qu7RgW4XXwIDAQAB\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 2 } ],
+  ticket: 187451 }
+recieve invalid response of invalid ticket { err: null,
+  data: 
+   [ { pubkey: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOoIRt2vP9nGyHQMnWgQHrskjj9qM0UV\nGbrCDC5t2zrUqdeuOZCjy7ttnyA5Vk9BgzcRJAsYdaaOLum2sy0M6XcCAwEAAQ==\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 1 },
+     { pubkey: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD0oSbx1XRgwvUGOD/jIJzUBbuZ\nhvmpYN3fP0UmwuU5bt+5T/v8FgX86YabhrnFc6rdsXPc7VepPA8UqmQoE7sPeHQO\nUzisQb42QOT4xHa0xNihmNjOFx+A5KLzBc4YN7DJZQJn/0EUIo4FAwmgXa7jwpWW\nQURl88+7Qu7RgW4XXwIDAQAB\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 2 } ],
+  ticket: 233029 }
+recieve invalid response of invalid ticket { err: null,
+  data: 
+   [ { pubkey: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOoIRt2vP9nGyHQMnWgQHrskjj9qM0UV\nGbrCDC5t2zrUqdeuOZCjy7ttnyA5Vk9BgzcRJAsYdaaOLum2sy0M6XcCAwEAAQ==\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 1 },
+     { pubkey: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD0oSbx1XRgwvUGOD/jIJzUBbuZ\nhvmpYN3fP0UmwuU5bt+5T/v8FgX86YabhrnFc6rdsXPc7VepPA8UqmQoE7sPeHQO\nUzisQb42QOT4xHa0xNihmNjOFx+A5KLzBc4YN7DJZQJn/0EUIo4FAwmgXa7jwpWW\nQURl88+7Qu7RgW4XXwIDAQAB\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 2 } ],
+  ticket: 110745 }
+p2pLocalPort 45116
+defer buffer
+defer end
+recieve invalid response of invalid ticket { err: null,
+  data: 
+   [ { pubkey: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOoIRt2vP9nGyHQMnWgQHrskjj9qM0UV\nGbrCDC5t2zrUqdeuOZCjy7ttnyA5Vk9BgzcRJAsYdaaOLum2sy0M6XcCAwEAAQ==\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 1 },
+     { pubkey: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD0oSbx1XRgwvUGOD/jIJzUBbuZ\nhvmpYN3fP0UmwuU5bt+5T/v8FgX86YabhrnFc6rdsXPc7VepPA8UqmQoE7sPeHQO\nUzisQb42QOT4xHa0xNihmNjOFx+A5KLzBc4YN7DJZQJn/0EUIo4FAwmgXa7jwpWW\nQURl88+7Qu7RgW4XXwIDAQAB\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 2 } ],
+  ticket: 949517 }
+recieve invalid response of invalid ticket { err: null,
+  data: 
+   [ { pubkey: '-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOoIRt2vP9nGyHQMnWgQHrskjj9qM0UV\nGbrCDC5t2zrUqdeuOZCjy7ttnyA5Vk9BgzcRJAsYdaaOLum2sy0M6XcCAwEAAQ==\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 1 },
+     { pubkey: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD0oSbx1XRgwvUGOD/jIJzUBbuZ\nhvmpYN3fP0UmwuU5bt+5T/v8FgX86YabhrnFc6rdsXPc7VepPA8UqmQoE7sPeHQO\nUzisQb42QOT4xHa0xNihmNjOFx+A5KLzBc4YN7DJZQJn/0EUIo4FAwmgXa7jwpWW\nQURl88+7Qu7RgW4XXwIDAQAB\n-----END PUBLIC KEY-----\n',
+       ips: [Object],
+       guid: 2 } ],
+  ticket: 768685 }
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+TypeError: Object #<Object> has no method 'FrontWebSocketServer'
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/utils.coffee:185:11)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/utils.coffee:187:4)
+    at Module._compile (module.js:456:26)
+    at Object.loadFile (/home/wuminghan/node_modules/coffee-script/lib/coffee-script/coffee-script.js:24:19)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:20:11)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:358:4)
+    at Module._compile (module.js:456:26)
+    at Object.exports.run (/usr/lib/node_modules/coffee-script/lib/coffee-script/coffee-script.js:124:25)
+    at compileScript (/usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:166:29)
+    at /usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:141:18
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+p2pLocalPort 45116
+TypeError: Cannot set property 'p2pLocalInterface' of undefined
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:28:25)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:358:4)
+    at Module._compile (module.js:456:26)
+    at Object.exports.run (/usr/lib/node_modules/coffee-script/lib/coffee-script/coffee-script.js:124:25)
+    at compileScript (/usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:166:29)
+    at /usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:141:18
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+TypeError: Cannot call method 'push' of undefined
+    at LocalServer.RPCServer.declare (/home/wuminghan/workspace/sybil/common/rpc.coffee:254:26)
+    at new LocalServer (/home/wuminghan/workspace/sybil/server/utils.coffee:123:12)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:28:17)
+    at Object.<anonymous> (/home/wuminghan/workspace/sybil/server/main.coffee:358:4)
+    at Module._compile (module.js:456:26)
+    at Object.exports.run (/usr/lib/node_modules/coffee-script/lib/coffee-script/coffee-script.js:124:25)
+    at compileScript (/usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:166:29)
+    at /usr/lib/node_modules/coffee-script/lib/coffee-script/command.js:141:18
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+
+/home/wuminghan/workspace/sybil/server/utils.coffee:122
+        return this.setTunnel(ws);
+                    ^
+TypeError: Object #<WebSocketServer> has no method 'setTunnel'
+    at WebSocketServer.<anonymous> (/home/wuminghan/workspace/sybil/server/utils.coffee:122:21)
+    at WebSocketServer.EventEmitter.emit (events.js:95:17)
+    at /home/wuminghan/node_modules/ws/lib/WebSocketServer.js:69:14
+    at completeHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:230:5)
+    at WebSocketServer.handleHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:253:3)
+    at WebSocketServer.handleUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:142:26)
+    at Server.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:67:12)
+    at Server.EventEmitter.emit (events.js:106:17)
+    at Socket.socket.ondata (http.js:1937:14)
+    at TCP.onread (net.js:510:27)
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+getAuthedNodes:service not ready,buffer RPC calls
+sendMessage:service not ready,buffer RPC calls
+
+/home/wuminghan/workspace/sybil/server/utils.coffee:122
+        return this.setTunnel(ws);
+                    ^
+TypeError: Object #<WebSocketServer> has no method 'setTunnel'
+    at WebSocketServer.<anonymous> (/home/wuminghan/workspace/sybil/server/utils.coffee:122:21)
+    at WebSocketServer.EventEmitter.emit (events.js:95:17)
+    at /home/wuminghan/node_modules/ws/lib/WebSocketServer.js:69:14
+    at completeHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:230:5)
+    at WebSocketServer.handleHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:253:3)
+    at WebSocketServer.handleUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:142:26)
+    at Server.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:67:12)
+    at Server.EventEmitter.emit (events.js:106:17)
+    at Socket.socket.ondata (http.js:1937:14)
+    at TCP.onread (net.js:510:27)
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+
+/home/wuminghan/workspace/sybil/server/utils.coffee:122
+        return this.setTunnel(ws);
+                    ^
+TypeError: Object #<WebSocketServer> has no method 'setTunnel'
+    at WebSocketServer.<anonymous> (/home/wuminghan/workspace/sybil/server/utils.coffee:122:21)
+    at WebSocketServer.EventEmitter.emit (events.js:95:17)
+    at /home/wuminghan/node_modules/ws/lib/WebSocketServer.js:69:14
+    at completeHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:230:5)
+    at WebSocketServer.handleHybiUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:253:3)
+    at WebSocketServer.handleUpgrade (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:142:26)
+    at Server.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocketServer.js:67:12)
+    at Server.EventEmitter.emit (events.js:106:17)
+    at Socket.socket.ondata (http.js:1937:14)
+    at TCP.onread (net.js:510:27)
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [Function],
+     close: [Function],
+     open: [Function] } } !!!
+ip null
+local server connection
+local server connection
+TypeError: Cannot read property 'isReady' of undefined
+    at LocalP2pInterface.(anonymous function) [as sendMessage] (/home/wuminghan/workspace/sybil/common/rpc.coffee:190:26)
+    at /home/wuminghan/workspace/sybil/server/main.coffee:338:34
+    at callbacks (/home/wuminghan/node_modules/express/lib/router/index.js:161:37)
+    at param (/home/wuminghan/node_modules/express/lib/router/index.js:135:11)
+    at pass (/home/wuminghan/node_modules/express/lib/router/index.js:142:5)
+    at Router._dispatch (/home/wuminghan/node_modules/express/lib/router/index.js:170:5)
+    at Object.router (/home/wuminghan/node_modules/express/lib/router/index.js:33:10)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Object.handle (/home/wuminghan/workspace/sybil/server/error.coffee:52:14)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Object.app._method [as handle] (/home/wuminghan/workspace/sybil/server/main.coffee:50:12)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Object.cookieParser [as handle] (/home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/cookieParser.js:60:5)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at multipart (/home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/multipart.js:64:37)
+    at /home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/bodyParser.js:57:9
+    at urlencoded (/home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/urlencoded.js:51:37)
+    at /home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/bodyParser.js:55:7
+    at json (/home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/json.js:53:37)
+    at Object.bodyParser [as handle] (/home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/bodyParser.js:53:5)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Object.expressInit [as handle] (/home/wuminghan/node_modules/express/lib/middleware.js:31:5)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Object.query [as handle] (/home/wuminghan/node_modules/express/node_modules/connect/lib/middleware/query.js:44:5)
+    at next (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:190:15)
+    at Function.app.handle (/home/wuminghan/node_modules/express/node_modules/connect/lib/proto.js:198:3)
+    at Server.app (/home/wuminghan/node_modules/express/node_modules/connect/lib/connect.js:65:37)
+    at Server.EventEmitter.emit (events.js:98:17)
+    at HTTPParser.parser.onIncoming (http.js:2027:12)
+    at HTTPParser.parserOnHeadersComplete [as onHeadersComplete] (http.js:119:23)
+    at Socket.socket.ondata (http.js:1917:22)
+    at TCP.onread (net.js:510:27)
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+p2pLocalPort 45116
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116/',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [ [Function], [Function] ],
+     close: [ [Function], [Function] ],
+     open: [Function] } } !!!
+ip null
+{ [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } 'p2p interface error'
+local server connection
+sendMessage:service not ready,buffer RPC calls
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+p2pLocalPort 45116
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116/',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [ [Function], [Function] ],
+     close: [ [Function], [Function] ],
+     open: [Function] } } !!!
+ip null
+{ [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } 'p2p interface error'
+local server connection
+local server connection
+local server connection
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+p2pLocalPort 45116
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116/',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [ [Function], [Function] ],
+     close: [ [Function], [Function] ],
+     open: [Function] } } !!!
+Trace
+    at WebSocket.<anonymous> (/home/wuminghan/workspace/sybil/common/rpc.coffee:32:17)
+    at WebSocket.EventEmitter.emit (events.js:117:20)
+    at ClientRequest.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocket.js:464:10)
+    at ClientRequest.EventEmitter.emit (events.js:95:17)
+    at Socket.socketErrorListener (http.js:1499:9)
+    at Socket.EventEmitter.emit (events.js:95:17)
+    at net.js:426:14
+    at process._tickCallback (node.js:415:13)
+{ [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } 'p2p interface error'
+local server connection
+sendMessage:service not ready,buffer RPC calls
+sendMessage:service not ready,buffer RPC calls
+p2pLocalPort 45116
+defer buffer
+defer end
+p2pLocalPort 45116
+defer buffer
+defer end
+local p2p interface closed
+reconnect
+p2pLocalPort 45116
+tunnel-error { [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } { _socket: null,
+  bytesReceived: 0,
+  readyState: 0,
+  supports: { binary: true },
+  _isServer: false,
+  url: 'ws://localhost:45116/',
+  protocolVersion: 13,
+  _events: 
+   { message: [Function],
+     error: [ [Function], [Function] ],
+     close: [ [Function], [Function] ],
+     open: [Function] } } !!!
+Trace
+    at WebSocket.<anonymous> (/home/wuminghan/workspace/sybil/common/rpc.coffee:32:17)
+    at WebSocket.EventEmitter.emit (events.js:117:20)
+    at ClientRequest.<anonymous> (/home/wuminghan/node_modules/ws/lib/WebSocket.js:464:10)
+    at ClientRequest.EventEmitter.emit (events.js:95:17)
+    at Socket.socketErrorListener (http.js:1499:9)
+    at Socket.EventEmitter.emit (events.js:95:17)
+    at net.js:426:14
+    at process._tickCallback (node.js:415:13)
+{ [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' } 'p2p interface error'
+local server connection
+local server connection
+local server connection
