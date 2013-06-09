@@ -1,0 +1,4 @@
+class FeedsList
+  constuctor:()->
+    rssUpdateItemTemplate = window.LeafTemplates['rss-update-item']
+    

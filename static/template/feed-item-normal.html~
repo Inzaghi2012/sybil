@@ -1,0 +1,13 @@
+		<article class="feedItem_normal feedItem" >
+			<div class="titleBox">
+				<a class="feedTitle" >标题</a>
+				<button title="分享" class="shareBtn"><i class="icon-share" ></i></button>
+				<button title="收藏" class="likeBtn"><i class="icon-star-empty" ></i></button>
+
+			</div>
+			<div class="timeBox" >
+				<p class="time" >上午12:00(20分钟前)</p>
+			</div>
+			<p class="author" >作者</p>
+			<p class="content" > 这里是订阅的内容</p>
+		</article>

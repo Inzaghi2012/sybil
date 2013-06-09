@@ -7,20 +7,27 @@
 		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css"/>
 		<link rel="stylesheet" href="css/module.css" type="text/css"/>
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
 		<script type="text/javascript" src="js/leaf.js"></script>
 		<script type="text/javascript" src="js/messageCenter.js"></script>
 		<script type="text/javascript" src="js/authedNodeList.js"></script>
 		<script type="text/javascript" src="js/test.js"></script>
+
+		<script type="text/javascript" src="js/feedsList.js"></script>
+		<script type="text/javascript" src="js/rssList.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 	</head>
 	<body>
 		<div id="leftPanelWrapper">
 			<div id="leftPanel" >
 				<h1>Sybil</h1>
-				<button id="subscribeBtn" ><i class="icon-plus" ></i> 订阅</button>
-				<button id="recommandPageBtn"><i style="display:none" class="icon-info" ></i>推荐的源</button>
-				<button id="homepageBtn">主页</button>
-				<div id="rssList">
+				<button id="subscribeBtn" data-id="subscribeBtn" >
+					<i class="icon-plus" ></i> 订阅
+				</button>
+				<button id="recommandPageBtn" data-id="recommandPageBtn" >
+					<i style="display:none" class="icon-info" ></i>推荐的源
+				</button>
+				<button id="homepageBtn" data-id="homepageBtn" >主页</button>
+				<div id="rssList" data-id="rssList" >
 				</div>
 			</div>
 		</div>
@@ -36,7 +43,6 @@
 						<button style="display:none;" id="listView" >列表视图</button>
 						<button id="sybilSetting" style="display:none;">设置</button>
 					</div>
-					
 				</header>
 				<section id="feedsListBox" >
 					<h5 id="feedsListBoxTitle" >所有条目</h5>
@@ -60,68 +66,12 @@
 			</div>
 		</div>
 		<div id="rssItemMenu">
-			<header >
-				<p id="sourceTitle" ></p>
+			<header data-id="header" >
+				<p id="sourceTitle" data-id="sourceTitle" ></p>
 			</header>
-			<button id="openlinkBtn">打开链接</button>
-			<button id="unsubscribeBtn">取消订阅</button>
-			<button id="cancelBtn">取消</button>
+			<button id="openlinkBtn" data-id="openlinkBtn" >打开链接</button>
+			<button id="unsubscribeBtn" data-id="unsubBtn" >取消订阅</button>
+			<button id="cancelBtn" data-id="cancelBtn" >取消</button>
 		</div>
 	</body>
-	<div id="templateBox" style="display:none;">
-		<footer class="feedsListFooter" >
-			<p>SYBIL</p>
-		</footer>
-		<footer class="feedsListOnloadFooter" >
-			<i id="spinner" class="icon-spinner icon-spin icon-large" ></i>
-		</footer>
-		<article class="feedItem_normal feedItem" >
-			<div class="titleBox">
-				<a class="feedTitle" >标题</a>
-				<button title="分享" class="shareBtn"><i class="icon-share" ></i></button>
-				<button title="收藏" class="likeBtn"><i class="icon-star-empty" ></i></button>
-
-			</div>
-			<div class="timeBox" >
-				<p class="time" >上午12:00(20分钟前)</p>
-			</div>
-			<p class="author" >作者</p>
-			<p class="content" > 这里是订阅的内容</p>
-		</article>
-		
-		<article class="feedItem_small feedItem" >
-			<header >
-				<button title="收藏" class="likeBtn"><i class="icon-star-empty" ></i></button>
-				<button title="分享" class="shareBtn"><i class="icon-share" ></i></button>
-				<h6>标题</h6>
-				<p class="" >内容摘要</p>
-				<div class="timeBox" >
-					<p class="time" >上午12:00(20分钟前)</p>
-				</div>
-			</header>
-			<div id="contentBox">
-				<div class="titleBox">
-					<a class="feedTitle" >标题</a>
-					<button class="shareBtn">分享</button>
-				</div>
-
-				<p class="content" > 这里是订阅的内容</p>
-			</div>
-		</article>
-		
-		<div class="rssListItem" >
-			<div class="iconWrapper" >
-				<img src="" class="" alt="" />
-			</div>
-			<p class="source" >xx网</p>
-			<p class="unread" >(20)</p>
-		</div>
-
-		<article class="rssUpdateItem" >
-			<h3 class="rssTitle" >title<span class="unreadNum"></span></h3>
-			<h5 class="articleTitle" >articalTitle</h5>
-			<p class="content" ></p>
-		</article>
-		
-	</div>
 </html>

@@ -203,7 +203,7 @@ button {
   font-weight: bolder;
   color: lightgray;
 }
-#feedsListBox .feedsListOnloadFooter {
+#feedsListBox .feedsListLoadingFooter {
   font-size: 30px;
   text-align: center;
   margin: 15px;
