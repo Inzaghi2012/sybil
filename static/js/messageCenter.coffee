@@ -4,7 +4,7 @@ class MessageCenter extends Leaf.EventEmitter
         @port = port
         @connect()
     connect:()->
-        
+        return
         ws = new WebSocket("ws://"+window.location.hostname+":"+@port)
         ws.onopen = ()=>
             @emit "connect"
@@ -15,13 +15,16 @@ class MessageCenter extends Leaf.EventEmitter
             @connect()
         @ws = ws
     send:(data)->
+        return
         @ws.send JSON.stringify(data)
     handleMessage:(msg)->
+        return
         try
             data = JSON.parse(msg)
         catch e
             console.log "fail to parse msg",msg
         @dispatch(data)
     dispatch:(data)->
+        return
         @emit data.type,data.value
 window.MessageCenter = MessageCenter

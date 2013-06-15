@@ -21,15 +21,13 @@ class Sybil
         @initFeedsLIst()
         @getFeedsOfAllRss()
     window.TemplateManager.start()
-      
   initMessageCenter:()->
     messageCenter = new MessageCenter(41123)
     messageCenter.on "share",(share)=>
       console.log "shared",share
       @showMessage '朋友们分享新文章了'
       $('#recommandPageBtn').addClass "unread"
-      $('#recommandPageBtn i').show()
-      
+      $('#recommandPageBtn i').show() 
     messageCenter.on "control",(action)=>
       console.log "control",action
       @rssList.nextRss() if action is 'nextRss'

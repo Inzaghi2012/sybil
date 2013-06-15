@@ -1,6 +1,6 @@
 request = require "request"
 feedparser = require "feedparser"
-db = require "../database/db.coffee"
+db = require "../server/db.coffee"
 async = require "async"
 class RssFetcher
     constructor:(url)->
@@ -16,16 +16,7 @@ class RssFetcher
                 for article in info.articles
                     if not article
                         continue
-                    results.push {
-                        title:article.title
-                        ,link:article.link
-                        ,source:@url
-                        ,author:article.author
-                        ,date:article.date
-                        ,guid:article.guid
-                        ,id:@url+article.guid
-                        ,summary:article.summary or article.title
-                        ,description:article.description or article.title}
+                    results.push {title:article.title,link:article.link,source:@url,author:article.author,date:article.date,guid:article.guid,id:@url+article.guid,summary:article.summary or article.title,description:article.description or article.title}
                 info.articles = results
                 callback(null,info)
         catch e
