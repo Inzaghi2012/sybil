@@ -98,14 +98,14 @@ button {
   top: -38px;
 }
 #feedsListBox .feedItem,
-#feedsListBox .rssUpdateItem {
+#feedsListBox .sourceUpdateItem {
   overflow: hidden;
   padding-left: 20px;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid transparent;
 }
 #feedsListBox .feedItem .content,
-#feedsListBox .rssUpdateItem .content {
+#feedsListBox .sourceUpdateItem .content {
   color: #222222;
   margin-left: 10px;
   width: 800px;
@@ -162,34 +162,34 @@ button {
 #feedsListBox .feedItem.readed .feedTitle {
   color: rgba(20, 20, 20, 0.8);
 }
-#feedsListBox .rssUpdateItem {
+#feedsListBox .sourceUpdateItem {
   width: 850px;
   padding-bottom: 10px;
   cursor: pointer;
 }
-#feedsListBox .rssUpdateItem .content {
+#feedsListBox .sourceUpdateItem .content {
   max-height: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-#feedsListBox .rssUpdateItem .content img {
+#feedsListBox .sourceUpdateItem .content img {
   max-width: 350px;
   height: auto;
   border: 10px solid white;
   border-radius: 6px;
   box-shadow: 0 0 10px 0 grey;
 }
-#feedsListBox .rssUpdateItem img {
+#feedsListBox .sourceUpdateItem img {
   max-width: 350px;
   border: 10px solid white;
   border-radius: 6px;
   box-shadow: 0 0 10px 0 grey;
 }
-#feedsListBox .rssUpdateItem .rssTitle {
+#feedsListBox .sourceUpdateItem .sourceTitle {
   color: darkblue;
 }
-#feedsListBox .rssUpdateItem:hover {
+#feedsListBox .sourceUpdateItem:hover {
   background-color: rgba(100, 100, 100, 0.1);
 }
 #feedsListBox footer {
@@ -208,7 +208,7 @@ button {
   text-align: center;
   margin: 15px;
 }
-#rssItemMenu {
+#sourceItemMenu {
   display: none;
   border: 1px solid gray;
   background-color: white;
@@ -218,7 +218,7 @@ button {
   border-radius: 3px;
   box-shadow: 0 0 6px #999797;
 }
-#rssItemMenu header p {
+#sourceItemMenu header p {
   margin: 5px;
   font-size: 12px;
   font-weight: bold;
@@ -227,7 +227,7 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-#rssItemMenu button {
+#sourceItemMenu button {
   width: 96%;
   margin-left: 2%;
   margin-bottom: 5px;
@@ -236,7 +236,7 @@ button {
   padding-left: 10px;
   background-color: transparent;
 }
-#rssItemMenu button:hover {
+#sourceItemMenu button:hover {
   color: darkred;
   font-weight: bold;
 }
@@ -296,30 +296,30 @@ button {
 #leftPanel #recommandPageBtn:hover {
   background-color: lightgrey;
 }
-#leftPanel #rssList {
+#leftPanel #sourceList {
   width: 90%;
   margin: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   margin-top: 20px;
   padding-top: 10px;
 }
-#leftPanel .rssListItem {
+#leftPanel .sourceListItem {
   margin: 0;
   cursor: pointer;
 }
-#leftPanel .rssListItem .iconWrapper {
+#leftPanel .sourceListItem .iconWrapper {
   margin: 0;
   padding: 0;
   display: inline;
 }
-#leftPanel .rssListItem .iconWrapper img {
+#leftPanel .sourceListItem .iconWrapper img {
   margin-top: 4px;
   margin-left: 15px;
   float: left;
   width: 18px;
   height: auto;
 }
-#leftPanel .rssListItem .iconWrapper i {
+#leftPanel .sourceListItem .iconWrapper i {
   font-size: 18px;
   margin-top: 4px;
   margin-left: 15px;
@@ -327,12 +327,12 @@ button {
   width: 18px;
   height: auto;
 }
-#leftPanel .rssListItem p {
+#leftPanel .sourceListItem p {
   margin: 5px auto;
   display: inline-block;
   font-size: 13px;
 }
-#leftPanel .rssListItem .source {
+#leftPanel .sourceListItem .source {
   text-align: left;
   float: left;
   margin-left: 13px;
@@ -341,11 +341,11 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-#leftPanel .rssListItem.active {
+#leftPanel .sourceListItem.active {
   font-weight: bold;
   color: darkred;
 }
-#leftPanel .rssListItem:hover {
+#leftPanel .sourceListItem:hover {
   color: darkred;
 }
 #subscribePopup {

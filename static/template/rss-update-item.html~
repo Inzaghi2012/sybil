@@ -1,6 +1,0 @@
-<article class="rssUpdateItem" >
-	<!--this will show on feeds list when HomePage active--> 
-	<h3 class="rssTitle" >title<span class="unreadNum"></span></h3>
-	<h5 class="articleTitle" >articalTitle</h5>
-	<p class="content" ></p>
-</article>
