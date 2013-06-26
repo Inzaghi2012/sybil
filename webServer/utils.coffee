@@ -1,5 +1,3 @@
-rpc = require "../common/rpc.coffee"
-RssFetcher = (require "../crawler/rssFetcher.coffee").RssFetcher
 db = (require "../database/db.coffee")
 ws =  require "ws"
 events = require "events"

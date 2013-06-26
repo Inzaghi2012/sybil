@@ -1,4 +1,4 @@
-rpc = require "../common/rpc.coffee"
+rpc = require "common-rpc"
 config = require "../config/centerServer.coffee"
 nodeConfig =require "../config/p2pnode.coffee"
 events = require "events"
