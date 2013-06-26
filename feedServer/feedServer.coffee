@@ -1,4 +1,5 @@
 feedparser = require "feedparser"
+
 config = require "../config/feedServerConfig.coffee"
 rpc = require "common-rpc"
 RPCServer = rpc.RPCServer
@@ -19,13 +20,23 @@ class RssFetcher extends events.EventEmitter
         try
             meta = null
             articles = []
-            parser = reqeust(@url).pipe(new feedparser())
+            req = request(@url)
+            req.on "error",(err)->
+                callback err,null
+            parser = req.pipe(new feedparser())
             parser.on "readable",()->
                 while article = parser.read()
                     articles.push article
+            parser.on "meta",(_meta)->
+                meta = _meta
             parser.on "error",(err)->
                 callback err,null
             parser.on "end",()=>
+                if not meta
+                    console.log "debug","articlelength",articles.length
+                    console.log "no meta",@url
+                    callback new Error "No Meta"
+                    return
                 @rssInfo = {
                     rssUrl:@url
                     ,title:meta.title or null
@@ -37,10 +48,10 @@ class RssFetcher extends events.EventEmitter
                     ,date:meta.date or null
                 }
                 results = []
+                #console.log "length",articles.length,@url
                 for article in articles
                     if not article
                         continue
-                    
                     feed = {
                         title:article.title or null
                         ,link:article.link or null
@@ -77,7 +88,6 @@ class ScheduledFetcher extends RssFetcher
         @minFetchInterval = 1000 * 60 * 1
         @timeFactor = 4
         @currentInterval = @minFetchInterval
-
     start:()->
         @checkout()
     stop:()->
@@ -125,6 +135,12 @@ class ScheduledFetcher extends RssFetcher
         @timer = setTimeout (@checkout.bind this),interval
     meanFeedPublishInterval:()->
         intervals = []
+        if @feeds.length is 0
+            @noFeedsCount = @noFeedsCount or 0
+            @noFeedsCount++
+            return Math.pow(@minInterval,@noFeedsCount)
+        if @feeds.length is 1
+            return date.now() - @feeds[0].date.getTime()
         for cursor in [0...@feeds.length-1]
             first = @feeds[cursor].date and @feeds[cursor].date.getTime() or 0
             second = @feeds[cursor+1].date and @feeds[cursor+1].date.getTime() or 0
@@ -205,6 +221,10 @@ class FeedServer extends RPCServer
             console.log rss
             @watchRss(rss.source)
     watchRss:(rssUrl)->
+        for rssSchedule in @schedules
+            if rssSchedule.url is rssUrl
+                console.log "already watch url",rssUrl
+                return
         fetcher = new ScheduledFetcher(rssUrl)
         @schedules.push fetcher
         fetcher.start()
@@ -244,7 +264,7 @@ class FeedServer extends RPCServer
                     else
                         callback err
                     return 
-                callback null,{feeds:info.feed,rss:info.rss}
+                callback null,{feeds:info.feeds,rss:info.rss}
                 console.log "new rss #{url} added,watch it"
                 @watchRss url
     
@@ -265,5 +285,6 @@ main = ()->
         feedServer = new FeedServer()
         feedServer.on "ready",()->
             console.log "feed server ready"
-    
+        feedServer.on "error",(err)->
+            console.error "error",err
 main()
