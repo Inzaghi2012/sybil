@@ -2,36 +2,36 @@ class window.FeedsList
   constructor:(sybil)->
     @sybil = sybil
     @widget = new Leaf.Widget "#feedsList"
-    @rssUpdateItemTpl = window.leafTemplates['rss-update-item']
+    @sourceUpdateItemTpl = window.leafTemplates['source-update-item']
     @feedItemNormalTpl = window.leafTemplates['feed-item-normal']
     @feedItemSmallTpl = window.leafTemplates['feed-item-small']
     @footerTpl = window.leafTemplates['feeds-list-footer']
     @loadingFooterTpl = window.leafTemplates['feeds-list-loading-footer']
   clearAll:()->
     @widget.$node.html ""
-  showHomePage:(rssArr,feeds)->
-  # home page will show updated rss
+  showHomePage:(sourceArr,feeds)->
+  # home page will show updated source
     @clearAll()
     sybil = @sybil
-    template = @rssUpdateItemTpl
+    template = @sourceUpdateItemTpl
     
-    $(dom).removeClass 'active' for dom in $ "#rssList .rssListItem"
+    $(dom).removeClass 'active' for dom in $ "#sourceList .sourceListItem"
     $('#homepageBtn').addClass 'active'
     $('#recommandPageBtn').removeClass 'active'
     $('#feedsListBoxTitle').text '主页 - 所有新条目'
 
     container = @widget.$node
-    for rss in rssArr
-      feedsArr = feeds[rss.id]
+    for source in sourceArr
+      feedsArr = feeds[source.id]
       if not feedsArr then continue
       #console.log @feeds
       if feedsArr.length > 0
         feed = feedsArr[0]
         #console.log feed
         item = new Leaf.Widget template
-        item.node.rssObj = rss
-        title = rss.title+"(#{rss.unreadCount})"
-        item.UI.$rssTitle.text title
+        item.node.sourceObj = source
+        title = source.title+"(#{source.unreadCount})"
+        item.UI.$sourceTitle.text title
         item.UI.$articleTitle.text feed.title
         item.UI.$content.html feed.summary or feed.title
 
@@ -39,14 +39,14 @@ class window.FeedsList
         
         item.node.onclick = ->
           console.log @,'clicked!!'
-          for dom in $ "#rssList .rssListItem"
-            if dom.id is @rssObj.id
+          for dom in $ "#sourceList .sourceListItem"
+            if dom.id is @sourceObj.id
               $(dom).addClass "active"
             else
               $(dom).removeClass 'active'
 
           $("#feedsListBox")[0].scrollTop = 0
-          sybil.showFeedsOfRss @rssObj
+          sybil.showFeedsOfSource @sourceObj
           
     new Leaf.Widget(@footerTpl).$node.appendTo container
   showRecommandedFeeds:()->
@@ -59,7 +59,7 @@ class window.FeedsList
       for feed in res.data
         newJ = template.clone()
         newJ[0].feedObj = feed
-        newJ[0].id = feed.id
+        newJ[0].id = feed.guid
         time = new Date(feed.date)
         now = new Date()
         if time.getYear() is now.getYear() and time.getMonth is now.getMonth() and time.getDay() is time.getDay()
@@ -80,35 +80,35 @@ class window.FeedsList
       console.error err if err
       callback(err,res)
   
-  showFeedsOfRss:(rss,type)->
+  showFeedsOfSource:(source,type)->
     sybil = @sybil
-    rssArr = sybil.rssArr
+    sourceArr = sybil.sourceArr
     feeds = sybil.feeds
-    rss.ajaxLock = false
+    source.ajaxLock = false
     #ajax lock用于确保异步更新时不会因为切换页面而出问题
     # 或者重复更新操作
 
     @clearAll()
     container = @widget.$node
-    if not feeds[rss.id] then return
+    if not feeds[source.id] then return
     if type is "normal" 
       template  = @feedItemNormalTpl
     else template = @feedItemSmallTpl
 
     a = document.createElement "a"
-    a.href = rss.link
-    a.title = rss.link
-    a.innerHTML = rss.title + "  <i class='icon-external-link'></>"
+    a.href = source.link
+    a.title = source.link
+    a.innerHTML = source.title + "  <i class='icon-external-link'></>"
     $("#feedsListBoxTitle").html a.outerHTML
     $("#feedsListBoxTitle").hover (->$(@).find('i').fadeIn 'fast'),(->$(@).find('i').fadeOut 'fast')
-    feedsArr = feeds[rss.id]
+    feedsArr = feeds[source.id]
     feedsList = @
     for feed in feedsArr
       item = new Leaf.Widget template
       item.node.feedObj = feed
-      item.node.rssObj = rss
-      item.node.id = feed.id
-      time = new Date(rss.date)
+      item.node.sourceObj = source
+      item.node.id = feed.guid
+      time = new Date(source.date)
       now = new Date()
       if time.getYear() is now.getYear() and time.getMonth is now.getMonth() and time.getDay() is time.getDay()
         # same day
@@ -121,7 +121,7 @@ class window.FeedsList
         console.warn @,'click'
         return if @feedObj.read
         $(@).addClass "readed"
-        feedsList.markFeedAsRead @feedObj,@rssObj
+        feedsList.markFeedAsRead @feedObj,@sourceObj
       @initFeedItemButtons item
       item.UI.$feedTitle.text(feed.title).attr("href",feed.link).attr("target","_blank")
       item.UI.$author.text "作者：#{feed.author}"
@@ -144,15 +144,15 @@ class window.FeedsList
         if dom.offsetTop < nowPos and dom.offsetTop+dom.offsetHeight >= nowPos
           @focusFeed dom
           $(dom).addClass 'readed'
-          if index > domArr.length-8 then @getMoreFeeds dom.rssObj
-          @markFeedAsRead dom.feedObj,dom.rssObj
+          if index > domArr.length-8 then @getMoreFeeds dom.sourceObj
+          @markFeedAsRead dom.feedObj,dom.sourceObj
           if index == domArr.length-1
-            rssListItem = do ->
-              for dom in $ "#rssList .rssListItem"
-                if dom.rssObj is rss then return dom
-            return if !rssListItem
-            rss.unreadCount = 0
-            $(rssListItem).find(".unread").html ""
+            sourceListItem = do ->
+              for dom in $ "#sourceList .sourceListItem"
+                if dom.sourceObj is source then return dom
+            return if !sourceListItem
+            source.unreadCount = 0
+            $(sourceListItem).find(".unread").html ""
           break
   initFeedItemButtons:(item)->
     sybil = @sybil
@@ -186,24 +186,24 @@ class window.FeedsList
         shareBtnJ.addClass "active"
         sybil.showMessage '分享成功'
 
-  getMoreFeeds:(rss)->
+  getMoreFeeds:(source)->
     #TODO
     container = @widget.$node
     #console.log container
-    return if rss.ajaxLock
-    rss.ajaxLock = true
+    return if source.ajaxLock
+    source.ajaxLock = true
     #container.remove ".feedsListFooter"
     console.warn '获取新feed'
     sybil = @
     template = $ "#templateBox .feedItem_normal"
-    @getFeedsOfRss rss,(newFeeds,drain)=>
-      return if !rss.ajaxLock or sybil.currentRss isnt rss
+    @getFeedsOfSource source,(newFeeds,drain)=>
+      return if !source.ajaxLock or sybil.currentSource isnt source
       for feed in newFeeds
         newJ = template.clone()
         newJ[0].feedObj = feed
-        newJ[0].rssObj = rss
-        newJ[0].id = feed.id
-        time = new Date(rss.date)
+        newJ[0].sourceObj = source
+        newJ[0].id = feed.guid
+        time = new Date(source.date)
         now = new Date()
         if time.getYear() is now.getYear() and time.getMonth is now.getMonth() and time.getDay() is time.getDay()
           # same day
@@ -215,14 +215,14 @@ class window.FeedsList
           console.warn @,'click'
           return if @feedObj.read
           $(@).addClass "readed"
-          sybil.feedsList.markFeedAsRead @feedObj,@rssObj
+          sybil.feedsList.markFeedAsRead @feedObj,@sourceObj
         sybil.initFeedItemButtons newJ
         newJ.find('.feedTitle').html(feed.title).attr("href",feed.link).attr("target","_blank")
         newJ.find('.author').html "作者：#{feed.author}"
         newJ.find('.content').html feed.description or feed.summary or feed.title
         newJ.addClass 'readed' if feed.read is true
         newJ.appendTo container
-      rss.ajaxLock = false
+      source.ajaxLock = false
       console.log '~~~~~~~~~~',drain
       if drain
         $('#templateBox .feedsListFooter').clone().appendTo container
@@ -237,7 +237,7 @@ class window.FeedsList
     
   nextItem:()->
     if @sybil.currentPage is 'home'
-      @sybil.showFeedsOfRss @sybil.rssArr[0]
+      @sybil.showFeedsOfSource @sybil.sourceArr[0]
       firstDom = $("#feedsList .feedItem")[0]
       @focusFeed firstDom
       return
@@ -250,7 +250,7 @@ class window.FeedsList
       
   lastItem:()->
     if @sybil.currentPage is 'home'
-      @sybil.showFeedsOfRss @sybil.rssArr[@sybil.rssArr.length-1]
+      @sybil.showFeedsOfSource @sybil.sourceArr[@sybil.sourceArr.length-1]
       domArr = $("#feedsList .feedItem")
       lastDom =  domArr[domArr.length-1]
       @focusFeed lastDom
@@ -264,19 +264,19 @@ class window.FeedsList
         @focusFeed domArr[index-1]
         break
         
-  markFeedAsRead:(feed,rss)->
+  markFeedAsRead:(feed,source)->
     return if feed.read
     feed.read = true;
     console.log "markFeedAsRead"
-    @sybil.apiGet "read",{id:feed.id},(err,res)->
+    @sybil.apiGet "read",{id:feed.guid},(err,res)->
       if err then console.error
-      rss.unreadCount -= 1
-      return if rss.unreadCount <= 0
-      rssListItem = do ->
-        for dom in $ "#rssList .rssListItem"
-          if dom.rssObj is rss then return dom
-      return if !rssListItem
-      if rss.unreadCount > 0
-        $(rssListItem).find(".unread").text "(#{rss.unreadCount})"
+      source.unreadCount -= 1
+      return if source.unreadCount <= 0
+      sourceListItem = do ->
+        for dom in $ "#sourceList .sourceListItem"
+          if dom.sourceObj is source then return dom
+      return if !sourceListItem
+      if source.unreadCount > 0
+        $(sourceListItem).find(".unread").text "(#{source.unreadCount})"
       else
-        $(rssListItem).find(".unread").text ""
+        $(sourceListItem).find(".unread").text ""

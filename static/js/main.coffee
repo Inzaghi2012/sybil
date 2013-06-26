@@ -1,95 +1,82 @@
 class Sybil
   constructor:()->
     console.log 'sybil init'
-    @rssArr = []
+    @sourceArr = []
     @feeds = {}
     @currentPage = 'home'
     window.TemplateManager = new Leaf.TemplateManager()
-    window.TemplateManager.use "feed-item-normal","rss-list-item","feeds-list-footer","feeds-list-loading-footer","rss-update-item","authed-node-list","authed-node-list-item"
+    window.TemplateManager.use "feed-item-normal","source-list-item","feeds-list-footer","feeds-list-loading-footer","source-update-item","authed-node-list","authed-node-list-item"
     
     window.TemplateManager.on "ready",(templates)=>
       window.leafTemplates = templates
       window.authedNodeList = new AuthedNodeList()
       authedNodeList.update()
       authedNodeList.appendTo document.body 
-      @apiGet 'rss',null,(err,res)=>
+      @apiGet 'source',null,(err,res)=>
         if err then console.error err
-        @initMessageCenter()
         @initButtons()
-        @rssArr = res.data
-        @initRssList()
+        @sourceArr = res.data
+        source.id = source.source for source in @sourceArr
+        @initSourceList()
         @initFeedsLIst()
-        @getFeedsOfAllRss()
+        @getFeedsOfAllSource()
     window.TemplateManager.start()
-  initMessageCenter:()->
-    messageCenter = new MessageCenter(41123)
-    messageCenter.on "share",(share)=>
-      console.log "shared",share
-      @showMessage '朋友们分享新文章了'
-      $('#recommandPageBtn').addClass "unread"
-      $('#recommandPageBtn i').show() 
-    messageCenter.on "control",(action)=>
-      console.log "control",action
-      @rssList.nextRss() if action is 'nextRss'
-      @rssList.lastRss() if action is 'lastRss'
-      @feedsList.nextItem() if action is 'nextItem'
-      @feedsList.lastItem() if action is 'lastItem'
-
-  initRssList:()->
-    @rssList = new RssList(this)
-    @rssList.clearAll()
-    for rss in @rssArr
-      @rssList.addItem rss
-    console.log @rssList
+    
+  initSourceList:()->
+    @sourceList = new SourceList(this)
+    @sourceList.clearAll()
+    for source in @sourceArr
+      @sourceList.addItem source
+    console.log @sourceList
 
   initFeedsLIst:()->
     @feedsList = new FeedsList(this)
     @feedsList.clearAll()
     
-  getFeedsOfAllRss:(callback)->
+  getFeedsOfAllSource:(callback)->
     console.log 'get feeds'
-    sum = @rssArr.length
+    sum = @sourceArr.length
     count = 0
-    for rss in @rssArr
-      if !rss.start
-        rss.start = 0
-        rss.count = 10
-      console.log rss.id
-      if rss.unreadCount is 0
+    for source in @sourceArr
+      if !source.offset
+        source.offset = 0
+        source.count = 10
+      console.log source.id
+      if source.unreadCount is 0
         count += 1
         continue
-      @apiGet 'feed',{rss:rss.id,type:'',start:rss.start,count:rss.count},(err,res)=>
+      @apiGet 'feed',{source:source.id,type:'',offset:source.offset,count:source.count},(err,res)=>
         if err then console.error err
         if res.data.feeds and res.data.feeds[0]
           rid = res.data.feeds[0].source
           @feeds[rid] = res.data.feeds if res.data.feeds
-          rssObj = do =>
-            for r in @rssArr
+          sourceObj = do =>
+            for r in @sourceArr
               if r.id is rid then return r
           console.log @feeds,count
         count += 1
-        if count is @rssArr.length
+        if count is @sourceArr.length
           if typeof callback isnt 'function'
             @showHomePage()
           else callback()
-      rss.start += rss.count
+      source.offset += source.count
     
-  getFeedsOfRss:(rss,callback)->
+  getFeedsOfSource:(source,callback)->
     console.log 'get more feeds'
-    @apiGet 'feed',{rss:rss.id,type:'',start:rss.start,count:rss.count},(err,res)=>
+    @apiGet 'feed',{source:source.id,type:'',offset:source.offset,count:source.count},(err,res)=>
       if err then console.error err
       return if res.data.feeds.length is 0
       callback res.data.feeds,res.data.drain if typeof callback is 'function'
-    rss.start+=rss.count
+    source.offset+=source.count
       
   showHomePage:()->
     console.log 'show home page /main page'
     @currentPage = 'home'
-    @feedsList.showHomePage @rssArr,@feeds
+    @feedsList.showHomePage @sourceArr,@feeds
     
   showRecommandedFeeds:()->
     console.log 'show recommanded page'
-    $(dom).removeClass 'active' for dom in $ "#rssList .rssListItem"
+    $(dom).removeClass 'active' for dom in $ "#sourceList .sourceListItem"
     $("#recommandPageBtn").removeClass "unread"
     $('#recommandPageBtn i').hide()
     $('#homepageBtn').removeClass 'active'
@@ -97,17 +84,17 @@ class Sybil
     @currentPage = 'recommanded'
     @feedsList.showRecommandedFeeds()
     
-  showFeedsOfRss:(rss,type = "normal")->
-    console.log 'show feeds in rss'
-    console.log rss,@feeds[rss.id]
+  showFeedsOfSource:(source,type = "normal")->
+    console.log 'show feeds in source'
+    console.log source,@feeds[source.id]
     $('#homepageBtn').removeClass 'active'
     $('#recommandPageBtn').removeClass 'active'
-    $("#leftPanel .rssListItem").removeClass 'active'
-    listItem =dom for dom in $ "#leftPanel .rssListItem" when dom.rssObj is rss
+    $("#leftPanel .sourceListItem").removeClass 'active'
+    listItem =dom for dom in $ "#leftPanel .sourceListItem" when dom.sourceObj is source
     $(listItem).addClass "active"
-    @currentRss = rss
+    @currentSource = source
     @currentPage = 'feeds'
-    @feedsList.showFeedsOfRss rss,type
+    @feedsList.showFeedsOfSource source,type
           
   initButtons:()->
     boxJ = $ '#subscribePopup'
@@ -123,19 +110,19 @@ class Sybil
       url = boxJ.find("input")[0].value
       @showMessage '添加中','loading'
       boxJ.fadeOut 'fast'
-      @apiGet 'subscribe',{rss:url},(err,res)=>
+      @apiGet 'subscribe',{source:url},(err,res)=>
         if err
           console.error err,res
           @showMessage '添加订阅失败','err'
         else
           @showMessage '添加成功，现在刷新页面','loading'
-          @apiGet 'rss',null,(err,res)=>
+          @apiGet 'source',null,(err,res)=>
             @showMessage '完成'
             if err then console.error err
             @initButtons()
-            @rssArr = res.data
-            @initRssList()
-            @getFeedsOfAllRss()
+            @sourceArr = res.data
+            @initSourceList()
+            @getFeedsOfAllSource()
             
     boxJ.find("#cancelBtn")[0].onclick = ->
       boxJ.fadeOut 'fast';
@@ -151,29 +138,29 @@ class Sybil
       
     $("#markAllReadBtn")[0].onclick = =>
       console.log 'mark all read btn clicked'
-      for rss in @rssArr
-        for feed in @feeds[rss.id]
-          @feedsList.markFeedAsRead feed,rss
+      for source in @sourceArr
+        for feed in @feeds[source.id]
+          @feedsList.markFeedAsRead feed,source
       
   refresh:()->
     console.log 'refresh!'
-    if @currentRss
-      nowRssId = @currentRss.id
+    if @currentSource
+      nowSourceId = @currentSource.id
     @showMessage '正在刷新','loading'
-    @apiGet 'rss',null,(err,res)=>
+    @apiGet 'source',null,(err,res)=>
       if err
         @showMessage '刷新失败','err'
         console.error err
         return
       @showMessage '完成'
       @initButtons()
-      @rssArr = res.data
-      @initRssList()
-      @getFeedsOfAllRss =>
-        return if !nowRssId
-        for rssObj in @rssArr
-          if rssObj.id is nowRssId
-            @showFeedsOfRss rssObj
+      @sourceArr = res.data
+      @initSourceList()
+      @getFeedsOfAllSource =>
+        return if !nowSourceId
+        for sourceObj in @sourceArr
+          if sourceObj.id is nowSourceId
+            @showFeedsOfSource sourceObj
             break
   
   initFeedItemButtons:(J)->
