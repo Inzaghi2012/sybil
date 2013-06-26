@@ -17,10 +17,15 @@ class RssFetcher extends events.EventEmitter
         return true
     fetch:(callback)->
         try
-            parser = feedparser.parseUrl(@url)
+            meta = null
+            articles = []
+            parser = reqeust(@url).pipe(new feedparser())
+            parser.on "readable",()->
+                while article = parser.read()
+                    articles.push article
             parser.on "error",(err)->
                 callback err,null
-            parser.on "complete",(meta,articles)=>
+            parser.on "end",()=>
                 @rssInfo = {
                     rssUrl:@url
                     ,title:meta.title or null

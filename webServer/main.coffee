@@ -7,7 +7,6 @@ path = require "path"
 rpc = require "common-rpc"
 settings = require "./settings.coffee"
 db = require "../database/db.coffee"
-utils = require "./utils.coffee"
 error = require "./error.coffee"
 config = require "../config/webServerConfig.coffee"
 
