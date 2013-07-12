@@ -72,9 +72,9 @@ app._method "/api/feed",(req,res)->
     source = req.param("source",null)
     offset = parseInt(req.param("offset",null))
     type = req.param("type",null)
+    count = parseInt(req.param("count",null))
     if not offset
         offset = 0
-    count = parseInt(req.param("count",null))
     if not count
         count = 10
     
@@ -89,6 +89,7 @@ app._method "/api/feed",(req,res)->
     db.getFeeds {count:count,offset:offset,all:all,source:source},(err,feeds)->
         if err
             res.serverError()
+            console.log err
             return
         result = {feeds:feeds}
         if count isnt feeds.length

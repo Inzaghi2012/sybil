@@ -4,7 +4,7 @@ Rss
 title:title or null
 description:description or null
 link:link # point to real source site
-source:RSSurl # !!! primary key or _id used when search
+source:RSSurl # base64 primary key _id used when search
 auther: auther or null
 language: language or null
 favicon:favicon or null

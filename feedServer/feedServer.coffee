@@ -7,6 +7,8 @@ request = require "request"
 db = require "../database/db.coffee"
 async = require "async"
 events = require "events"
+toBase64 = (string)->
+    return new Buffer(string).toString("base64");
 class RssFetcher extends events.EventEmitter
     constructor:(url)->
         super()
@@ -59,7 +61,7 @@ class RssFetcher extends events.EventEmitter
                         ,author:article.author or null
                         ,date:article.date or null
                         ,guid:article.guid or null
-                        ,id:@url+article.guid
+                        ,id:toBase64(@url+article.guid)
                         ,summary:article.summary or null
                         ,description:article.description or null
                         }

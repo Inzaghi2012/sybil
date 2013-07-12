@@ -9,15 +9,15 @@ dbConnector = new mongodb.Db(config.name,dbServer,{safe:false})
 exports.DatabaseReady = false
 Collections = {}
 exports.Collections = Collections
-Database = null
 _eventEmitter = new EventEmitter()
+toBase64 = (string)->
+    return new Buffer(string).toString("base64")
 dbConnector.open (err,db)->
     if err or not db
         console.error "fail to connect to mongodb"
         console.error err
         process.exit(1)
     dbConnector.db = db
-    Database = null
     async.map collectionNames,((collectionName,callback)->
         dbConnector.db.collection(collectionName,(err,col)->
             if err
@@ -40,14 +40,14 @@ exports.setFeedRead = (id,callback)->
     Collections.feed.findAndModify {_id:id,read:false},{$set:{read:true}},{safe:true},(err,obj)->
         # change the total read count
         if obj
-            Collections.rss.update {_id:obj.source},{$inc:{unread:1}}
+            Collections.rss.update {_id:obj._id},{$inc:{unread:1}}
         if callback
             callback()
 exports.setFeedUnread = (id,callback)->
     Collections.feed.findAndModify {_id:id,read:true},{$set:{read:false}},{safe:true},(err,obj)->
         # change the total read count
         if obj
-            Collections.rss.update {_id:obj.source},{$inc:{unread:-1}}
+            Collections.rss.update {_id:obj._id},{$inc:{unread:-1}}
         
 exports.insertFeeds = (feeds,callback)->
     if not feeds and callback
@@ -59,7 +59,7 @@ exports.insertFeeds = (feeds,callback)->
     # mongodb is just a temperory choice
     # thus not that much error handleing
     for feed in feeds
-        feed._id = feed.source+feed.guid
+        feed._id = toBase64(feed.source+feed.guid)
         feed.read = false
         Collections.feed.insert feed,{safe:true},(err)->
             if err and err.code is 11000
@@ -70,14 +70,14 @@ exports.insertFeeds = (feeds,callback)->
                 return
             # tolerence if _id not exists
             # so dont check it
-            Collections.rss.update {_id:feed.source},{$inc:{unreadCount:1}}
+            Collections.rss.update {source:feed.source},{$inc:{unreadCount:1}}
     if callback 
         callback null
 exports.ready = (callback)->
     _eventEmitter.on "ready",callback
     
 exports.addRss = (rss,callback)->
-    rss._id = rss.source
+    rss._id = toBase64 rss.source
     Collections.rss.insert rss,{safe:true},(err,data)->
         if err
             if err.code is 11000
@@ -89,8 +89,8 @@ exports.addRss = (rss,callback)->
                 callback err
                 return
         callback null
-exports.removeRss = (url,callback)->
-    Collections.rss.remove {_id:url},{safe:true},(err)->
+exports.removeRss = (id,callback)->
+    Collections.rss.remove {_id:id},{safe:true},(err)->
         if not callback
             return
         if err
@@ -101,6 +101,7 @@ exports.getAllRsses = (callback)->
     cursor = Collections.rss.find()
     cursor.toArray (err,arr)->
         for item in arr
+            item.id = item._id
             delete item._id
         if err
             callback err
@@ -121,7 +122,7 @@ exports.getFeeds = (info,callback)->
         query.read = false
     
     
-    cursor = Collections.feed.find query,{skip:offset,limit:count,sort:"date"}
+    cursor = Collections.feed.find query,{skip:offset,limit:count,sort:{"date":-1}}
     cursor.toArray (err,arrs)->
         if err
             callback err
